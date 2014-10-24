@@ -8,7 +8,9 @@ object TaskSchema {
   
   val user = qbClass(
     "id" -> objectId,
-    "name" -> qbNonEmptyText)
+    "name" -> qbNonEmptyText,
+    "status" -> qbEnum("ACTIVE", "PASSIVE"),
+    "email" -> qbEmail)
 
   val task = qbClass(
     "id" -> objectId,
