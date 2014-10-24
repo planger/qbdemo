@@ -1,6 +1,6 @@
 package controllers
 
-import model.TaskSchema
+import model.UserSchema
 import org.qbproject.schema.QBSchema._ 
 import org.qbproject.controllers.QBCrudController
 import org.qbproject.mongo.{ QBCollectionValidation, QBMongoCollection }
@@ -12,10 +12,10 @@ object UserController extends MongoController
 
   override def collection: QBCollectionValidation =
     new QBMongoCollection("users")(db) with QBCollectionValidation {
-      override def schema = TaskSchema.user
+      override def schema = UserSchema.user
     }
   
   override def qbRoutes = UserController.crudRoutes
   
-  override def createSchema = TaskSchema.user - "id"
+  override def createSchema = UserSchema.user - "id"
 }

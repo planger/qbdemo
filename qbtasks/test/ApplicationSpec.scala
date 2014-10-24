@@ -4,6 +4,7 @@ import org.junit.runner._
 import play.api.test._
 import play.api.test.Helpers._
 import play.api.libs.json.Json
+import play.api.libs.json.JsString
 
 /**
  * Tests the application's RESTful API.
@@ -31,10 +32,20 @@ class ApplicationSpec extends Specification {
       status(response) must equalTo(BAD_REQUEST)
     }
 
-    "reply with OK on posting user without id" in new WithApplication {
+    "reply with OK on posting valid user" in new WithApplication {
       val request = FakeRequest(POST, "/users").withJsonBody(validUser)
       val response = route(request).get
       status(response) must equalTo(OK)
+    }
+    
+    "reply with stored user on posting valid user" in new WithApplication {
+      val request = FakeRequest(POST, "/users").withJsonBody(validUser)
+      val response = route(request).get
+
+      val content = contentAsJson(response)
+      content \ "name" must equalTo(JsString("Bart Simpson"))
+      content \ "status" must equalTo(JsString("ACTIVE"))
+      content \ "email" must equalTo(JsString("bart@simpson.com"))
     }
 
     "reply with added user on getting all users after adding one" in new WithApplication {
@@ -42,10 +53,16 @@ class ApplicationSpec extends Specification {
       val postResponse = route(postRequest).get
       status(postResponse) must equalTo(OK)
       
+      val postResponseContent = contentAsJson(postResponse)
+      val id = postResponseContent \ "id"
+      
       val getRequest = FakeRequest(GET, "/users").withJsonBody(validUser)
       val getResponse = route(getRequest).get
       status(getResponse) must equalTo(OK)
-      contentAsString(getResponse) must contain("Bart Simpson")
+      
+      val getResponseContent = contentAsJson(getResponse)
+      val lastIdInDb = (getResponseContent \\ "id").last
+      lastIdInDb must equalTo(id)
     }
 
   }
