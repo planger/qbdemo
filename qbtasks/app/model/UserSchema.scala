@@ -1,14 +1,9 @@
 package model
 
 import org.qbproject.mongo.objectId
-import org.qbproject.schema.QBSchema.qbClass
-import org.qbproject.schema.QBSchema.qbEmail
-import org.qbproject.schema.QBSchema.qbEnum
-import org.qbproject.schema.QBSchema.qbNonEmptyText
+import org.qbproject.schema.QBSchema._
 
-import model.QBView.QBViewControl
-import model.QBView.QBViewModel
-import model.QBView.QBViewPath
+import model.QBView._
 
 object UserSchema {
 

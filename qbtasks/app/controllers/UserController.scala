@@ -1,12 +1,9 @@
 package controllers
 
-import org.qbproject.controllers.JsonHeaders
-import org.qbproject.controllers.QBCrudController
-import org.qbproject.mongo.QBCollectionValidation
-import org.qbproject.mongo.QBMongoCollection
-import org.qbproject.routing.QBRouter
-import org.qbproject.schema.QBSchema.QBSchemaOps
-import org.qbproject.schema.QBSchema.qbTypeWriter
+import org.qbproject.controllers._
+import org.qbproject.mongo._
+import org.qbproject.routing._
+import org.qbproject.schema.QBSchema._
 
 import model.UserSchema
 import play.api.libs.json.Json
