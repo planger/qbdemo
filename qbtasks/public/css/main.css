@@ -144,6 +144,13 @@ fieldset.inline2 {
   padding: 20px;
 }
 
+.centered {
+  margin-left: 10em;
+  margin-right: 10em;
+  margin-top: 5em;
+}
+
+
 @media (max-width:767px) {
 
 #wrapper {
