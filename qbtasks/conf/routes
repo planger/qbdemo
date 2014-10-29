@@ -6,6 +6,8 @@
 # localhost:9000/#/<entity-name> will call qbforms with <entity-name>, e.g., users
 GET     /                           controllers.Application.index
 
+->      /qbforms                    qbforms.Routes
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 

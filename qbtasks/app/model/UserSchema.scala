@@ -1,9 +1,8 @@
 package model
 
+import org.qbproject.forms._
 import org.qbproject.mongo.objectId
 import org.qbproject.schema.QBSchema._
-
-import model.QBView._
 
 object UserSchema {
 
